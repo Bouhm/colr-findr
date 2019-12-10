@@ -1,12 +1,11 @@
 import mongoose from 'mongoose';
+import connectDb from '../util/connection';
 
 import { getHueForShade } from '../helpers/colorHelper';
 import ntc from '../lib/ntc';
 import Color from '../models/color';
 
-const URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-v8yjs.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`;
-
-mongoose.connect(URI, { useNewUrlParser: true });
+connectDb();
 
 // Name That Color (NTC) provides a list of named colors and approximate hues
 // names contains a list of colors in the following format:
