@@ -8,12 +8,8 @@ export interface IColor {
   hue: string
 }
 
-type ColorProps = {
-  width: Number
-} & IColor
-
-const Color = (props: ColorProps) => {
-  const { hex, width } = props
+const Color = (props: IColor) => {
+  const { hex } = props
 
   const Color = styled.div`
     flex: 1;
@@ -25,9 +21,9 @@ const Color = (props: ColorProps) => {
   `
 
   return (
-    <Card width={width}>
+    <Card>
       <Color />
-      <CardDetails>{hex}</CardDetails>
+      <CardDetails>#{hex.toLowerCase()}</CardDetails>
     </Card>
   )
 }

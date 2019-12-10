@@ -12,15 +12,16 @@ const Colors = (props: ColorContainerProps) => {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-  `
 
-  const columns = 4
-  const width = 100 / columns - 1
+    @media (max-width: 400px) {
+      display: block;
+    }
+  `
 
   return (
     <ColorsContainer>
       {props.colors.map(color => (
-        <Color key={color.hex} width={width} {...color} />
+        <Color key={color.hex} {...color} />
       ))}
     </ColorsContainer>
   )
