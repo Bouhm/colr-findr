@@ -6,6 +6,7 @@ import ColorCard, { IColor } from './ColorCard'
 type ColorListProps = {
   cols: number
   colors: IColor[]
+  disabled?: boolean
 }
 
 const ColorList = (props: ColorListProps) => {
@@ -18,7 +19,7 @@ const ColorList = (props: ColorListProps) => {
   return (
     <ColorListContainer>
       {props.colors.map(color => (
-        <ColorCard key={color.hex} {...color} />
+        <ColorCard key={color.hex} {...color} disabled={props.disabled} />
       ))}
     </ColorListContainer>
   )

@@ -13,8 +13,8 @@ const ColorView = (props: IColor) => {
   // Get shades for color by its Value
   useEffect(() => {
     // Clamp V so it's within 0 to 100
-    const clamp = (val: number, min: number, max: number) => {
-      return val <= min ? min : val >= max ? max : val
+    const clamp = (val: number) => {
+      return val <= 0 ? 0 : val >= 100 ? 100 : val
     }
 
     // Convert to HSV to adjust Value
@@ -25,8 +25,7 @@ const ColorView = (props: IColor) => {
     const numShades = 5
     const mid = Math.floor(numShades / 2)
     let currHsv = hsv
-    currHsv.v = hsv.v - step * mid
-    currHsv.v = clamp(currHsv.v, 0, 100)
+    currHsv.v = clamp(hsv.v - step * mid)
 
     // Adjust HSV and convert back to Hex
     for (let i = 0; i < numShades; i++) {
@@ -40,8 +39,8 @@ const ColorView = (props: IColor) => {
         })
       }
 
-      currHsv.v += step
-      currHsv.v = clamp(currHsv.v, 0, 100)
+      currHsv.v = clamp(currHsv.v + step)
+      if (currHsv.v === 100 || currHsv.v === 0) break
     }
 
     setColors(shades)
@@ -56,7 +55,7 @@ const ColorView = (props: IColor) => {
   return (
     <ColorViewContainer>
       <ColorCard size="large" {...props} />
-      <ColorList cols={5} colors={colors} />
+      <ColorList cols={5} colors={colors} disabled />
     </ColorViewContainer>
   )
 }
