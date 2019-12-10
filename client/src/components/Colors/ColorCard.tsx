@@ -4,13 +4,18 @@ import styled from 'styled-components'
 import Card from '../UI/Card'
 import { ColorContext } from '../Contexts/ColorContext'
 
+// Hex should exclude the preceding #
 export interface IColor {
   hex: string
   hue: string
 }
 
-const Color = (props: IColor) => {
-  const { hex } = props
+type ColorProps = {
+  size?: string
+} & IColor
+
+const ColorCard = (props: ColorProps) => {
+  const { hex, size } = props
   const { setColor } = useContext(ColorContext)
 
   const Color = styled.div`
@@ -18,21 +23,16 @@ const Color = (props: IColor) => {
     background-color: #${hex};
   `
 
-  const CardDetails = styled.div`
+  const ColorDetails = styled.div`
     padding: 1em;
   `
 
   return (
-    <Card>
-      <Color
-        onClick={() => {
-          console.log(props)
-          setColor(props)
-        }}
-      />
-      <CardDetails>#{hex.toLowerCase()}</CardDetails>
+    <Card onClick={() => setColor(props)} size={size}>
+      <Color />
+      <ColorDetails>#{hex.toLowerCase()}</ColorDetails>
     </Card>
   )
 }
 
-export default Color
+export default ColorCard

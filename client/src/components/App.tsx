@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
-import ColorContainer from './Colors/ColorContainer'
+import ColorList from './Colors/ColorList'
 import { ColorProvider, ColorContext } from './Contexts/ColorContext'
-import { IColor } from './Colors/Color'
+import ColorView from './Colors/ColorView'
+import { IColor } from './Colors/ColorCard'
 import NavBar from './Nav/NavBar'
 
 const URI = 'https://colorsapi.herokuapp.com/json'
 
 const App: React.FC = () => {
   const [data, setData] = useState<Array<IColor>>([])
+  const { color: selectedColor } = useContext(ColorContext)
 
   useEffect(() => {
     fetch(URI, {
@@ -26,9 +28,11 @@ const App: React.FC = () => {
   return (
     <div>
       <NavBar />
-      <ColorProvider>
-        <ColorContainer colors={data} />
-      </ColorProvider>
+      {selectedColor ? (
+        <ColorView {...selectedColor} />
+      ) : (
+        <ColorList colors={data} />
+      )}
     </div>
   )
 }

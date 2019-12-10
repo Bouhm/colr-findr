@@ -1,18 +1,21 @@
 import styled from 'styled-components'
 
-export default styled.div`
+type CardProps = {
+  size?: string
+}
+
+export default styled.div<CardProps>`
   border-radius: 8px;
-  box-shadow: 0 0 5px #ccc;
   display: flex;
+  box-shadow: 0 0 5px #ccc;
   flex-direction: column;
   overflow: hidden;
-  width: 250px;
-  height: 250px;
+  width: ${props => (props.size === 'large' ? 'auto' : '250px')};
+  height: ${props => (props.size === 'large' ? 'auto' : '250px')};
   margin: 1em;
   padding: 1px;
 
   @media (max-width: 400px) {
-    display: flex;
     width: auto;
   }
 `

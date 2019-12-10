@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react'
-import { IColor } from '../Colors/Color'
+import { IColor } from '../Colors/ColorCard'
 
 interface IColorContext {
   color: IColor | null
