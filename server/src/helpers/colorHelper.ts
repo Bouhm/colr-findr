@@ -1,4 +1,4 @@
-import * as ntc from "../lib/ntc";
+import ntc from "../lib/ntc";
 ntc.init();
 
 // Maps hues (the color groups) to associated color shades
