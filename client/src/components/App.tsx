@@ -6,7 +6,7 @@ import { IColor } from './Colors/Color'
 const URI = 'https://colorsapi.herokuapp.com/json'
 
 const App: React.FC = () => {
-  const [colorsData, setColorsData] = useState<Array<IColor>>([])
+  const [data, setData] = useState<Array<IColor>>([])
 
   useEffect(() => {
     fetch(URI, {
@@ -16,15 +16,15 @@ const App: React.FC = () => {
       }
     })
       .then(res => res.json())
-      .then(colorsData => {
-        colorsData(colorsData.colors)
+      .then(data => {
+        setData(data.colors)
       })
   }, [])
 
   return (
     <div>
       <NavBar />
-      <ColorContainer colors={colorsData} />
+      <ColorContainer colors={data} />
     </div>
   )
 }

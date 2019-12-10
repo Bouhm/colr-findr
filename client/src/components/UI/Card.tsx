@@ -1,8 +1,14 @@
 import styled from 'styled-components'
 
-export default styled.div`
+type CardProps = {
+  width: Number
+}
+
+export default styled.div<CardProps>`
+  display: flex;
+  flex-direction: column;
   border: 1px solid gray;
   border-radius: 3px;
-  width: 100px;
-  height: 100px;
+  width: ${(props: any) => props.width}%;
+  height: 300px;
 `

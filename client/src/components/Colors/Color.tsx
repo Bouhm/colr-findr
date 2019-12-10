@@ -8,23 +8,24 @@ export interface IColor {
   hue: string
 }
 
-const Color = (props: IColor) => {
-  const { hex } = props
+type ColorProps = {
+  width: Number
+} & IColor
 
-  const CardContainer = styled.div`
-    display: flex;
-    border: 1px gray solid;
-    border-radius: 3px;
-  `
+const Color = (props: ColorProps) => {
+  const { hex, width } = props
 
   const Color = styled.div`
+    flex: 1;
     background-color: #${hex};
   `
 
-  const CardDetails = styled.div``
+  const CardDetails = styled.div`
+    padding: 1em;
+  `
 
   return (
-    <Card>
+    <Card width={width}>
       <Color />
       <CardDetails>{hex}</CardDetails>
     </Card>

@@ -1,4 +1,6 @@
 import React from 'react'
+import styled from 'styled-components'
+
 import Color, { IColor } from './Color'
 
 type ColorContainerProps = {
@@ -6,14 +8,21 @@ type ColorContainerProps = {
 }
 
 const Colors = (props: ColorContainerProps) => {
-  const { colors } = props
+  const ColorsContainer = styled.div`
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  `
+
+  const columns = 4
+  const width = 100 / columns - 1
 
   return (
-    <div>
-      {colors.map(color => (
-        <Color key={color.hex} {...color} />
+    <ColorsContainer>
+      {props.colors.map(color => (
+        <Color key={color.hex} width={width} {...color} />
       ))}
-    </div>
+    </ColorsContainer>
   )
 }
 
