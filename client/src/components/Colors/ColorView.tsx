@@ -47,12 +47,16 @@ const ColorView = (props: IColor) => {
     setColors(shades)
   }, [])
 
-  const ColorViewContainer = styled.div``
+  const ColorViewContainer = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  `
 
   return (
     <ColorViewContainer>
-      <ColorCard {...props} />
-      <ColorList colors={colors} />
+      <ColorCard size="large" {...props} />
+      <ColorList cols={5} colors={colors} />
     </ColorViewContainer>
   )
 }

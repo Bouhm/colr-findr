@@ -4,31 +4,24 @@ import styled from 'styled-components'
 import ColorCard, { IColor } from './ColorCard'
 
 type ColorListProps = {
+  cols: number
   colors: IColor[]
 }
 
-const ColorGrid = (props: ColorListProps) => {
-  const ColorGridContainer = styled.div`
-    margin: 0 auto;
-    width: 100%;
-  `
-
-  const ColorGrid = styled.div`
+const ColorList = (props: ColorListProps) => {
+  const ColorListContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    grid-template-columns: repeat(${props.cols}, 1fr);
     grid-gap: 2rem;
-    padding: 1rem;
   `
 
   return (
-    <ColorGridContainer>
-      <ColorGrid>
-        {props.colors.map(color => (
-          <ColorCard key={color.hex} {...color} />
-        ))}
-      </ColorGrid>
-    </ColorGridContainer>
+    <ColorListContainer>
+      {props.colors.map(color => (
+        <ColorCard key={color.hex} {...color} />
+      ))}
+    </ColorListContainer>
   )
 }
 
-export default ColorGrid
+export default ColorList

@@ -10,12 +10,12 @@ export interface IColor {
   hue: string
 }
 
-// type ColorProps = {
-//   width: string
-// } & IColor
+type ColorProps = {
+  size?: string
+} & IColor
 
-const ColorCard = (props: IColor) => {
-  const { hex } = props
+const ColorCard = (props: ColorProps) => {
+  const { hex, size } = props
   const { setColor } = useContext(ColorContext)
 
   const Color = styled.div`
@@ -28,7 +28,7 @@ const ColorCard = (props: IColor) => {
   `
 
   return (
-    <Card onClick={() => setColor(props)}>
+    <Card size={size} onClick={() => setColor(props)}>
       <Color />
       <ColorDetails>#{hex.toLowerCase()}</ColorDetails>
     </Card>
