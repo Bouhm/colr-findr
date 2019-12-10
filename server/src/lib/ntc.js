@@ -1780,4 +1780,4 @@ const ntc = {
 
 }
 
-module.exports = ntc
+export default ntc

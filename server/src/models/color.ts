@@ -1,15 +1,15 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const colorSchema = new mongoose.Schema({
   hex: {
+    required: true,
     type: String,
-    unique: true,
-    required: true
+    unique: true
   },
   hue: {
-    type: String,
-    required: true
+    required: true,
+    type: String
   }
-})
+});
 
-export default mongoose.model('Color', colorSchema)
+export default mongoose.model("Color", colorSchema);

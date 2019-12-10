@@ -1,34 +1,32 @@
-import * as ntc from '../lib/ntc'
-ntc.init()
+import * as ntc from "../lib/ntc";
+ntc.init();
 
 // Maps hues (the color groups) to associated color shades
-const huesMap = {
-  red: ['red'],
-  orange: ['orange'],
-  yellow: ['yellow'],
-  green: ['green'],
-  blue: ['blue'],
-  purple: ['purple', 'violet'],
-  brown: ['brown'],
-  gray: ['gray', 'grey', 'black', 'white']
-}
+export const huesMap: any = {
+  blue: ["blue"],
+  brown: ["brown"],
+  gray: ["gray", "grey", "black", "white"],
+  green: ["green"],
+  orange: ["orange"],
+  purple: ["purple", "violet"],
+  red: ["red"],
+  yellow: ["yellow"]
+};
 
 // Return hue for the given color hexcode
-const getHueForColorHex = color => {
-  const shade = ntc.name(color)[3]
-  return getHueForShade(shade)
-}
+export const getHueForColorHex = (color: string) => {
+  const shade = ntc.name(color)[3] as string;
+  return getHueForShade(shade);
+};
 
-const getHueForShade = shade => {
-  shade = shade.toLowerCase()
-  const hues = Object.keys(huesMap)
+export const getHueForShade = (shade: string) => {
+  shade = shade.toLowerCase();
+  const hues = Object.keys(huesMap);
 
   // Get associated color group
   const hue = hues.includes(shade)
     ? shade
-    : hues.find(key => huesMap[key].includes(shade))
+    : hues.find((key) => huesMap[key].includes(shade));
 
-  return hue
-}
-
-module.exports = { huesMap, getHueForColorHex, getHueForShade }
+  return hue;
+};
