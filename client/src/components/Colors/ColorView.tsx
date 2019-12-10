@@ -13,7 +13,7 @@ const ColorView = (props: IColor) => {
   // Get shades for color by its Value
   useEffect(() => {
     // Clamp V so it's within 0 to 100
-    const clamp = (val: Number, min: Number, max: Number) => {
+    const clamp = (val: number, min: number, max: number) => {
       return val <= min ? min : val >= max ? max : val
     }
 
@@ -21,7 +21,7 @@ const ColorView = (props: IColor) => {
     const hsv = colorsys.hexToHsv(hex)
     const shades: IColor[] = []
 
-    const step = 5
+    const step = 15
     const numShades = 5
     const mid = Math.floor(numShades / 2)
     let currHsv = hsv
@@ -51,7 +51,7 @@ const ColorView = (props: IColor) => {
 
   return (
     <ColorViewContainer>
-      <ColorCard size="large" {...props} />
+      <ColorCard {...props} />
       <ColorList colors={colors} />
     </ColorViewContainer>
   )

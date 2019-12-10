@@ -9,7 +9,7 @@ import NavBar from './Nav/NavBar'
 const URI = 'https://colorsapi.herokuapp.com/json'
 
 const App: React.FC = () => {
-  const [data, setData] = useState<Array<IColor>>([])
+  const [data, setData] = useState<IColor[]>([])
   const { color: selectedColor } = useContext(ColorContext)
 
   useEffect(() => {
