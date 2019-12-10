@@ -1,10 +1,5 @@
 import React from 'react'
-import Card from './Card/Card'
-
-export interface IColor {
-  hex: string
-  hue: string
-}
+import Color, { IColor } from './Color'
 
 type ColorContainerProps = {
   colors: Array<IColor>
@@ -16,7 +11,7 @@ const Colors = (props: ColorContainerProps) => {
   return (
     <div>
       {colors.map(color => (
-        <Card key={color.hex} color={color} />
+        <Color key={color.hex} {...color} />
       ))}
     </div>
   )
