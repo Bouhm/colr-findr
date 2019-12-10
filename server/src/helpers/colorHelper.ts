@@ -1,16 +1,16 @@
-import ntc from "../lib/ntc";
+import ntc from '../lib/ntc';
 ntc.init();
 
 // Maps hues (the color groups) to associated color shades
 export const huesMap: any = {
-  blue: ["blue"],
-  brown: ["brown"],
-  gray: ["gray", "grey", "black", "white"],
-  green: ["green"],
-  orange: ["orange"],
-  purple: ["purple", "violet"],
-  red: ["red"],
-  yellow: ["yellow"]
+  blue: ['blue'],
+  brown: ['brown'],
+  gray: ['gray', 'grey', 'black', 'white'],
+  green: ['green'],
+  orange: ['orange'],
+  purple: ['purple', 'violet'],
+  red: ['red'],
+  yellow: ['yellow']
 };
 
 // Return hue for the given color hexcode

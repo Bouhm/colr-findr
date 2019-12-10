@@ -1,8 +1,8 @@
-import express from "express";
+import express from 'express';
 
-import { getColors } from "../controllers/colorController";
+import { getColors } from '../controllers/colorController';
 
 const router = express.Router();
-router.get("/", getColors);
+router.get('/', getColors);
 
 export default router;

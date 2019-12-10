@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const colorSchema = new mongoose.Schema({
   hex: {
@@ -12,4 +12,4 @@ const colorSchema = new mongoose.Schema({
   }
 });
 
-export default mongoose.model("Color", colorSchema);
+export default mongoose.model('Color', colorSchema);
