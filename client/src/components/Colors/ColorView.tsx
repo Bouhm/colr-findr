@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
+import Button from '../UI/Button'
 import ColorCard, { IColor } from './ColorCard'
+import { ColorContext } from '../Contexts/ColorContext'
 import ColorList from './ColorList'
 
 const colorsys = require('colorsys')
 
 const ColorView = (props: IColor) => {
   const [colors, setColors] = useState<IColor[]>([])
+  const { setColor } = useContext(ColorContext)
   const { hex, hue } = props
 
   // Get shades for color by its Value
@@ -52,10 +55,17 @@ const ColorView = (props: IColor) => {
     flex-direction: column;
   `
 
+  const Centered = styled.div`
+    margin: 0 auto;
+  `
+
   return (
     <ColorViewContainer>
       <ColorCard size="large" {...props} />
       <ColorList cols={5} colors={colors} disabled />
+      <Centered>
+        <Button onClick={() => setColor(null)}>Clear</Button>
+      </Centered>
     </ColorViewContainer>
   )
 }
