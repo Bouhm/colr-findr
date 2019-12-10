@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 
 import Card from '../UI/Card'
+import { ColorContext } from '../Contexts/ColorContext'
 
 export interface IColor {
   hex: string
@@ -10,6 +11,7 @@ export interface IColor {
 
 const Color = (props: IColor) => {
   const { hex } = props
+  const { setColor } = useContext(ColorContext)
 
   const Color = styled.div`
     flex: 1;
@@ -22,7 +24,12 @@ const Color = (props: IColor) => {
 
   return (
     <Card>
-      <Color />
+      <Color
+        onClick={() => {
+          console.log(props)
+          setColor(props)
+        }}
+      />
       <CardDetails>#{hex.toLowerCase()}</CardDetails>
     </Card>
   )

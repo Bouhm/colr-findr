@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 
 import Color, { IColor } from './Color'
+import { ColorContext } from '../Contexts/ColorContext'
 
 type ColorContainerProps = {
   colors: Array<IColor>
 }
 
 const Colors = (props: ColorContainerProps) => {
+  const { color: selectedColor } = useContext(ColorContext)
+
   const ColorsContainer = styled.div`
     display: flex;
     justify-content: space-around;

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import NavBar from './Nav/NavBar'
+
 import ColorContainer from './Colors/ColorContainer'
+import { ColorProvider, ColorContext } from './Contexts/ColorContext'
 import { IColor } from './Colors/Color'
+import NavBar from './Nav/NavBar'
 
 const URI = 'https://colorsapi.herokuapp.com/json'
 
@@ -24,7 +26,9 @@ const App: React.FC = () => {
   return (
     <div>
       <NavBar />
-      <ColorContainer colors={data} />
+      <ColorProvider>
+        <ColorContainer colors={data} />
+      </ColorProvider>
     </div>
   )
 }
