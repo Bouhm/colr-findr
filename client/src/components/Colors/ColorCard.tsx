@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 
-import Card from '../UI/Card'
 import { Store } from '../Store'
+import Card from '../UI/Card'
 
 // Hex should exclude the preceding #
 export interface IColor {
@@ -10,7 +10,7 @@ export interface IColor {
   hue: string
 }
 
-type ColorProps = {
+interface ColorProps {
   color: IColor
   size?: string
   disabled?: boolean
@@ -29,7 +29,9 @@ const ColorCard = (props: ColorProps) => {
     padding: 1em;
   `
   const handleClick = () => {
-    if (disabled) return
+    if (disabled) {
+      return
+    }
     dispatch({ type: 'SELECT_COLOR', payload: color })
   }
 

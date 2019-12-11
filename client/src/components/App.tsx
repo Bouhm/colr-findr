@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 
 import ColorList from './Colors/ColorList'
@@ -23,13 +23,13 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetch(URI, {
-      method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
+      method: 'GET',
     })
       .then(res => res.json())
-      .then(data => dispatch({ action: 'SET_DATA', payload: data.colors }))
+      .then(data => dispatch({ type: 'SET_DATA', payload: data.colors }))
   }, [])
 
   const AppContainer = styled.div`
@@ -74,8 +74,6 @@ const App: React.FC = () => {
   const startIdx = (currPageNum - 1) * COLORS_PER_PAGE
   const endIdx = startIdx + COLORS_PER_PAGE
 
-  console.log(data)
-
   return (
     <AppContainer>
       <GlobalStyle />
@@ -85,9 +83,7 @@ const App: React.FC = () => {
           <ColorView color={selectedColor} />
         ) : (
           <>
-            {data.length && (
-              <ColorList cols={4} colors={data.slice(startIdx, endIdx)} />
-            )}
+            {data.length && <ColorList cols={4} colors={data.slice(startIdx, endIdx)} />}
             {Paginate()}
           </>
         )}

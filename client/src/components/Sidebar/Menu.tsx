@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 
-type MenuProps = {
+interface MenuProps {
   items: string[]
 }
 
@@ -18,7 +18,7 @@ const Menu = (props: MenuProps) => {
   return (
     <div>
       {items.map(item => (
-        <MenuItem>{item}</MenuItem>
+        <MenuItem key={item}>{item}</MenuItem>
       ))}
     </div>
   )

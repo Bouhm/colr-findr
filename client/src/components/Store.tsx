@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from 'react'
+import React, { useReducer } from 'react'
 import { IColor } from './Colors/ColorCard'
 
 interface IAction {
@@ -6,24 +6,11 @@ interface IAction {
   payload: any
 }
 
-interface IState {
-  data: IColor[]
-  hueFilter: string
-  search: string
-  selectedColor: IColor | null
-}
-
-export const initialState: IState = {
-  data: [],
-  hueFilter: '',
-  search: '',
-  selectedColor: null
-}
-
 // REDUCERS
 export const reducer = (state: IState, action: IAction): IState => {
   switch (action.type) {
     case 'SET_DATA':
+      console.log(action.payload)
       return { ...state, data: action.payload }
     case 'SELECT_COLOR':
       return { ...state, selectedColor: action.payload }
@@ -38,9 +25,23 @@ export const reducer = (state: IState, action: IAction): IState => {
   }
 }
 
-export const Store = React.createContext<IState | any>(initialState)
+interface IState {
+  data: IColor[]
+  hueFilter: string
+  search: string
+  selectedColor: IColor | null
+}
 
-export const StoreProvider = (props: any): React.ReactNode => {
-  const state = useReducer(reducer, initialState)
-  return <Store.Provider value={state}>{props.children}</Store.Provider>
+export const initialState: IState = {
+  data: [],
+  hueFilter: '',
+  search: '',
+  selectedColor: null,
+}
+
+export const Store = React.createContext<[IState, React.Dispatch<any>]>([initialState, () => {}])
+
+export const StoreProvider = (props: any): JSX.Element => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+  return <Store.Provider value={[state, dispatch]}>{props.children}</Store.Provider>
 }

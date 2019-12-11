@@ -1,20 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
+import { Store } from '../Store'
 import Button from '../UI/Button'
 import ColorCard, { IColor } from './ColorCard'
 import ColorList from './ColorList'
-import { Store } from '../Store'
 
 const colorsys = require('colorsys')
 
-type ColorViewProps = {
+interface ColorViewProps {
   color: IColor
 }
 
 const ColorView = (props: ColorViewProps) => {
   const [colors, setColors] = useState<IColor[]>([])
-  const [dispatch] = useContext(Store)
+  const [state, dispatch] = useContext(Store)
   const { hex, hue } = props.color
 
   // Get shades for color by its Value
@@ -32,7 +32,7 @@ const ColorView = (props: ColorViewProps) => {
     const step = Math.floor(hsv.v / numShades)
     const mid = Math.floor(numShades / 2)
 
-    let currHsv = hsv
+    const currHsv = hsv
     currHsv.v = clamp(hsv.v - step * mid)
 
     // Adjust HSV and convert back to Hex
@@ -44,7 +44,7 @@ const ColorView = (props: ColorViewProps) => {
       } else {
         shades.push({
           hex: colorsys.hsvToHex(currHsv).slice(1),
-          hue: hue
+          hue,
         })
       }
 
@@ -66,12 +66,10 @@ const ColorView = (props: ColorViewProps) => {
 
   return (
     <ColorViewContainer>
-      <ColorCard size='large' color={props.color} />
-      <ColorList cols={5} colors={colors} disabled />
+      <ColorCard size="large" color={props.color} />
+      <ColorList cols={5} colors={colors} disabled={true} />
       <Centered>
-        <Button onClick={() => dispatch({ action: 'DESELECT_COLOR' })}>
-          Clear
-        </Button>
+        <Button onClick={() => dispatch({ type: 'DESELECT_COLOR', payload: null })}>Clear</Button>
       </Centered>
     </ColorViewContainer>
   )

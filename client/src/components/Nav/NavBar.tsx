@@ -9,7 +9,7 @@ const NavLeft = styled.div`
 const NavBar = () => {
   return (
     <NavContainer>
-      <NavLeft></NavLeft>
+      <NavLeft />
     </NavContainer>
   )
 }

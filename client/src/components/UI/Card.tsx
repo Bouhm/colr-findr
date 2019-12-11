@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-type CardProps = {
+interface CardProps {
   size?: string
 }
 

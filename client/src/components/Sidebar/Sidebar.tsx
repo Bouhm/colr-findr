@@ -4,16 +4,7 @@ import styled from 'styled-components'
 import Button from '../UI/Button'
 import Menu from './Menu'
 
-const hues = [
-  'Red',
-  'Orange',
-  'Yellow',
-  'Green',
-  'Blue',
-  'Purple',
-  'Brown',
-  'Gray'
-]
+const hues = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Brown', 'Gray']
 
 const Sidebar = () => {
   return (

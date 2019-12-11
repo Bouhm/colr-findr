@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import ColorCard, { IColor } from './ColorCard'
 
-type ColorListProps = {
+interface ColorListProps {
   cols: number
   colors: IColor[]
   disabled?: boolean
