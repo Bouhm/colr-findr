@@ -4,20 +4,34 @@ import styled, { createGlobalStyle } from 'styled-components'
 import ColorList from './Colors/ColorList'
 import ColorView from './Colors/ColorView'
 import NavBar from './Nav/NavBar'
+import Sidebar from './Sidebar/Sidebar'
 import { Store } from './Store'
 
-const URI = 'https://colorsapi.herokuapp.com/json'
+const AppContainer = styled.div`
+  height: 100vh;
+`
 
-const GlobalStyle = createGlobalStyle`
+const Main = styled.main`
+  height: 100%;
+  display: flex;
+`
+
+const Content = styled.div`
+  flex: 1;
+`
+
+const App: React.FC = () => {
+  const URI = 'https://colorsapi.herokuapp.com/json'
+  const hues = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Brown', 'Gray']
+
+  const GlobalStyle = createGlobalStyle`
   html, body {
     margin: 0;
     padding: 0;
   }
 `
 
-const COLORS_PER_PAGE = 12
-
-const App: React.FC = () => {
+  const COLORS_PER_PAGE = 12
   const [currPageNum, setCurrPageNum] = useState(1)
   const [state, dispatch] = useContext(Store)
 
@@ -31,14 +45,6 @@ const App: React.FC = () => {
       .then(res => res.json())
       .then(data => dispatch({ type: 'SET_DATA', payload: data.colors }))
   }, [])
-
-  const AppContainer = styled.div`
-    height: 100vh;
-  `
-
-  const Main = styled.main`
-    height: 100%;
-  `
 
   const Paginate = () => {
     const numPages = Math.floor(data.length / COLORS_PER_PAGE)
@@ -70,23 +76,27 @@ const App: React.FC = () => {
     )
   }
 
-  const { data, selectedColor } = state
+  const { data, hueFilter, selectedColor } = state
   const startIdx = (currPageNum - 1) * COLORS_PER_PAGE
   const endIdx = startIdx + COLORS_PER_PAGE
+  const colors = hueFilter ? data.filter(color => color.hue === hueFilter.toLowerCase()) : data
 
   return (
     <AppContainer>
       <GlobalStyle />
       <NavBar />
       <Main>
-        {selectedColor ? (
-          <ColorView color={selectedColor} />
-        ) : (
-          <>
-            {data.length && <ColorList cols={4} colors={data.slice(startIdx, endIdx)} />}
-            {Paginate()}
-          </>
-        )}
+        <Sidebar items={hues} />
+        <Content>
+          {selectedColor ? (
+            <ColorView color={selectedColor} />
+          ) : (
+            <>
+              {<ColorList cols={4} colors={colors.slice(startIdx, endIdx)} />}
+              {Paginate()}
+            </>
+          )}
+        </Content>
       </Main>
     </AppContainer>
   )

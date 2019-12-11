@@ -4,13 +4,20 @@ import styled from 'styled-components'
 import Button from '../UI/Button'
 import Menu from './Menu'
 
-const hues = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Brown', 'Gray']
+interface SidebarProps {
+  items: string[]
+}
 
-const Sidebar = () => {
+const Sidebar = (props: SidebarProps) => {
+  const SidebarContainer = styled.div`
+    width: 15em;
+  `
+
   return (
-    <div>
+    <SidebarContainer>
       <Button>Random Color</Button>
-    </div>
+      <Menu items={props.items} />
+    </SidebarContainer>
   )
 }
 

@@ -10,7 +10,6 @@ interface IAction {
 export const reducer = (state: IState, action: IAction): IState => {
   switch (action.type) {
     case 'SET_DATA':
-      console.log(action.payload)
       return { ...state, data: action.payload }
     case 'SELECT_COLOR':
       return { ...state, selectedColor: action.payload }

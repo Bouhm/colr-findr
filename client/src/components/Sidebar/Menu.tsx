@@ -1,5 +1,7 @@
-import React, { ReactNode } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+
+import { Store } from '../Store'
 
 interface MenuProps {
   items: string[]
@@ -7,6 +9,7 @@ interface MenuProps {
 
 const Menu = (props: MenuProps) => {
   const { items } = props
+  const [state, dispatch] = useContext(Store)
 
   const MenuContainer = styled.div`
     display: flex;
@@ -16,11 +19,13 @@ const Menu = (props: MenuProps) => {
   const MenuItem = styled.div``
 
   return (
-    <div>
+    <MenuContainer>
       {items.map(item => (
-        <MenuItem key={item}>{item}</MenuItem>
+        <MenuItem key={item} onClick={() => dispatch({ type: 'FILTER_COLOR', payload: item })}>
+          {item}
+        </MenuItem>
       ))}
-    </div>
+    </MenuContainer>
   )
 }
 
