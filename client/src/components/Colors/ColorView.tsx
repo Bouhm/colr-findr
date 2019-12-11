@@ -13,20 +13,20 @@ interface ColorViewProps {
 }
 
 const ColorView = (props: ColorViewProps) => {
-  const [colors, setColors] = useState<IColor[]>([])
+  const [shades, setShades] = useState<IColor[]>([])
   const [state, dispatch] = useContext(Store)
   const { hex, hue } = props.color
 
+  // Clamp V so it's within 0 to 100
+  const clamp = (val: number) => {
+    return val <= 0 ? 0 : val >= 100 ? 100 : val
+  }
+
   // Get shades for color by its Value
   useEffect(() => {
-    // Clamp V so it's within 0 to 100
-    const clamp = (val: number) => {
-      return val <= 0 ? 0 : val >= 100 ? 100 : val
-    }
-
     // Convert to HSV to adjust Value
     const hsv = colorsys.hexToHsv(hex)
-    const shades: IColor[] = []
+    const colorShades: IColor[] = []
 
     const numShades = 5
     const step = Math.floor(hsv.v / numShades)
@@ -40,9 +40,9 @@ const ColorView = (props: ColorViewProps) => {
       // Manually set middle to original color since
       // HSV to Hex conversion is not perfect
       if (i === mid) {
-        shades.push({ hex, hue })
+        colorShades.push({ hex, hue })
       } else {
-        shades.push({
+        colorShades.push({
           hex: colorsys.hsvToHex(currHsv).slice(1),
           hue,
         })
@@ -51,8 +51,8 @@ const ColorView = (props: ColorViewProps) => {
       currHsv.v = clamp(currHsv.v + step)
     }
 
-    setColors(shades)
-  }, [])
+    setShades(colorShades)
+  }, [state.selectedColor])
 
   const ColorViewContainer = styled.div`
     height: 100%;
@@ -67,9 +67,9 @@ const ColorView = (props: ColorViewProps) => {
   return (
     <ColorViewContainer>
       <ColorCard size="large" color={props.color} />
-      <ColorList cols={5} colors={colors} disabled={true} />
+      <ColorList cols={5} colors={shades} disabled={true} />
       <Centered>
-        <Button onClick={() => dispatch({ type: 'DESELECT_COLOR', payload: null })}>Clear</Button>
+        <Button onClick={() => dispatch({ type: 'DESELECT_COLOR' })}>Clear</Button>
       </Centered>
     </ColorViewContainer>
   )

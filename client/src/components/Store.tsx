@@ -3,16 +3,20 @@ import { IColor } from './Colors/ColorCard'
 
 interface IAction {
   type: string
-  payload: any
+  payload?: any
 }
 
 // REDUCERS
 export const reducer = (state: IState, action: IAction): IState => {
+  const { data } = state
+
   switch (action.type) {
     case 'SET_DATA':
       return { ...state, data: action.payload }
     case 'SELECT_COLOR':
       return { ...state, selectedColor: action.payload }
+    case 'RANDOM_COLOR':
+      return { ...state, selectedColor: data[Math.floor(Math.random() * (data.length + 1))] }
     case 'DESELECT_COLOR':
       return { ...state, selectedColor: null }
     case 'SEARCH_COLOR':
