@@ -24,15 +24,17 @@ const ColorView = (props: IColor) => {
     const hsv = colorsys.hexToHsv(hex)
     const shades: IColor[] = []
 
-    const step = 15
     const numShades = 5
+    const step = Math.floor(hsv.v / numShades)
     const mid = Math.floor(numShades / 2)
+
     let currHsv = hsv
     currHsv.v = clamp(hsv.v - step * mid)
 
     // Adjust HSV and convert back to Hex
     for (let i = 0; i < numShades; i++) {
-      // Original color
+      // Manually set middle to original color since
+      // HSV to Hex conversion is not perfect
       if (i === mid) {
         shades.push({ hex, hue })
       } else {
@@ -43,7 +45,6 @@ const ColorView = (props: IColor) => {
       }
 
       currHsv.v = clamp(currHsv.v + step)
-      if (currHsv.v === 100 || currHsv.v === 0) break
     }
 
     setColors(shades)
