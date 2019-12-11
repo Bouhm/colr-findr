@@ -15,13 +15,16 @@
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
     "styled-components": "^4.4.1",
+    "tslint": "^5.20.1",
+    "tslint-react": "^4.1.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "tslint -c tslint.json src/**/*.{ts,tsx} --fix --format verbose"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,6 +42,8 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^4.4.1"
+    "@types/styled-components": "^4.4.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1"
   }
 }

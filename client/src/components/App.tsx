@@ -74,6 +74,8 @@ const App: React.FC = () => {
   const startIdx = (currPageNum - 1) * COLORS_PER_PAGE
   const endIdx = startIdx + COLORS_PER_PAGE
 
+  console.log(data)
+
   return (
     <AppContainer>
       <GlobalStyle />
@@ -83,7 +85,9 @@ const App: React.FC = () => {
           <ColorView color={selectedColor} />
         ) : (
           <>
-            <ColorList cols={4} colors={data.slice(startIdx, endIdx)} />
+            {data.length && (
+              <ColorList cols={4} colors={data.slice(startIdx, endIdx)} />
+            )}
             {Paginate()}
           </>
         )}
