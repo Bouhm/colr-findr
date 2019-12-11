@@ -19,7 +19,7 @@ const ColorList = (props: ColorListProps) => {
   return (
     <ColorListContainer>
       {props.colors.map(color => (
-        <ColorCard key={color.hex} {...color} disabled={props.disabled} />
+        <ColorCard key={color.hex} color={color} disabled={props.disabled} />
       ))}
     </ColorListContainer>
   )

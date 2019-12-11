@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 
 import Card from '../UI/Card'
-import { ColorContext } from '../Contexts/ColorContext'
+import { Store } from '../Store'
 
 // Hex should exclude the preceding #
 export interface IColor {
@@ -11,27 +11,32 @@ export interface IColor {
 }
 
 type ColorProps = {
+  color: IColor
   size?: string
   disabled?: boolean
-} & IColor
+}
 
 const ColorCard = (props: ColorProps) => {
-  const { disabled, hex, size } = props
-  const { setColor } = useContext(ColorContext)
+  const { color, disabled, size } = props
+  const [state, dispatch] = useContext(Store)
 
   const Color = styled.div`
     flex: 1;
-    background-color: #${hex};
+    background-color: #${color.hex};
   `
 
   const ColorDetails = styled.div`
     padding: 1em;
   `
+  const handleClick = () => {
+    if (disabled) return
+    dispatch({ type: 'SELECT_COLOR', payload: color })
+  }
 
   return (
-    <Card size={size} onClick={() => !disabled && setColor(props)}>
+    <Card size={size} onClick={handleClick}>
       <Color />
-      <ColorDetails>#{hex.toLowerCase()}</ColorDetails>
+      <ColorDetails>#{color.hex.toLowerCase()}</ColorDetails>
     </Card>
   )
 }

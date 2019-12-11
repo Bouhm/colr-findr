@@ -3,15 +3,19 @@ import styled from 'styled-components'
 
 import Button from '../UI/Button'
 import ColorCard, { IColor } from './ColorCard'
-import { ColorContext } from '../Contexts/ColorContext'
 import ColorList from './ColorList'
+import { Store } from '../Store'
 
 const colorsys = require('colorsys')
 
-const ColorView = (props: IColor) => {
+type ColorViewProps = {
+  color: IColor
+}
+
+const ColorView = (props: ColorViewProps) => {
   const [colors, setColors] = useState<IColor[]>([])
-  const { setColor } = useContext(ColorContext)
-  const { hex, hue } = props
+  const [dispatch] = useContext(Store)
+  const { hex, hue } = props.color
 
   // Get shades for color by its Value
   useEffect(() => {
@@ -62,10 +66,12 @@ const ColorView = (props: IColor) => {
 
   return (
     <ColorViewContainer>
-      <ColorCard size="large" {...props} />
+      <ColorCard size='large' color={props.color} />
       <ColorList cols={5} colors={colors} disabled />
       <Centered>
-        <Button onClick={() => setColor(null)}>Clear</Button>
+        <Button onClick={() => dispatch({ action: 'DESELECT_COLOR' })}>
+          Clear
+        </Button>
       </Centered>
     </ColorViewContainer>
   )
