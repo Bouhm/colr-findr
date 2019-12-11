@@ -9,12 +9,12 @@ interface SidebarProps {
   items: string[]
 }
 
+const SidebarContainer = styled.div`
+  width: 15em;
+`
+
 const Sidebar = (props: SidebarProps) => {
   const [state, dispatch] = useContext(Store)
-
-  const SidebarContainer = styled.div`
-    width: 15em;
-  `
 
   return (
     <SidebarContainer>

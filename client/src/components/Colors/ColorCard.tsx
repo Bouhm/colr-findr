@@ -16,18 +16,19 @@ interface ColorProps {
   disabled?: boolean
 }
 
+const Color = styled.div<IColor>`
+  flex: 1;
+  background-color: #${props => props.hex};
+`
+
+const ColorDetails = styled.div`
+  padding: 1em;
+`
+
 const ColorCard = (props: ColorProps) => {
   const { color, disabled, size } = props
   const [state, dispatch] = useContext(Store)
 
-  const Color = styled.div`
-    flex: 1;
-    background-color: #${color.hex};
-  `
-
-  const ColorDetails = styled.div`
-    padding: 1em;
-  `
   const handleClick = () => {
     if (disabled) {
       return
@@ -37,7 +38,7 @@ const ColorCard = (props: ColorProps) => {
 
   return (
     <Card size={size} onClick={handleClick}>
-      <Color />
+      <Color {...color} />
       <ColorDetails>#{color.hex.toLowerCase()}</ColorDetails>
     </Card>
   )

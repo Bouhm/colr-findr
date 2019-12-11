@@ -7,16 +7,16 @@ interface MenuProps {
   items: string[]
 }
 
+const MenuContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+`
+
+const MenuItem = styled.div``
+
 const Menu = (props: MenuProps) => {
   const { items } = props
   const [state, dispatch] = useContext(Store)
-
-  const MenuContainer = styled.div`
-    display: flex;
-    flex-flow: column;
-  `
-
-  const MenuItem = styled.div``
 
   return (
     <MenuContainer>
