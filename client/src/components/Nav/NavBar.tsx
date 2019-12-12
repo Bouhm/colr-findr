@@ -4,6 +4,8 @@ import Search from './Search'
 
 const NavContainer = styled.div`
   background-color: black;
+  line-height: 4em;
+  padding: 0 1em;
   height: 4em;
 `
 

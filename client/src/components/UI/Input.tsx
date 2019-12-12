@@ -6,6 +6,6 @@ export default styled.input`
   height: 3em;
   line-height: 3em;
   min-width: 8em;
-  text-align: center;
+  padding: 0 1em;
   background-color: white;
 `

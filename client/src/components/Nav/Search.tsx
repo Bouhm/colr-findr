@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 
-import Input from '../UI/Input'
 import useInput from '../Hooks/useInput'
 import { Store } from '../Store'
+import Input from '../UI/Input'
 
 const Search = () => {
   const { inputVal, handleInputChange } = useInput(undefined)
