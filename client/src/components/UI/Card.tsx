@@ -11,6 +11,7 @@ interface CardProps {
 export default styled.div<CardProps>`
   display: flex;
   flex-direction: column;
+  min-height: ${sizes.small.height};
   height: ${props => (props.size ? sizes[props.size].height : sizes.medium.height)};
   border: ${props => (props.noShadow ? '1px solid black' : 'none')};
   border-radius: 7px;

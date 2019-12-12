@@ -4,7 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import ColorList from './Colors/ColorList'
 import ColorView from './Colors/ColorView'
 import NavBar from './Nav/NavBar'
-import Sidebar from './Sidebar/Sidebar'
+import SidePanel from './Panel/SidePanel'
 import { Store } from './Store'
 import { IColor } from './Colors/ColorCard'
 
@@ -30,7 +30,6 @@ const GlobalStyle = createGlobalStyle`
 const AppContainer = styled.div`
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
 `
 const Main = styled.main`
   display: flex;
@@ -41,6 +40,10 @@ const Main = styled.main`
   bottom: 0;
   right: 0;
   left: 0;
+
+  @media (max-width: 500px) {
+    flex-wrap: wrap;
+  }
 `
 
 const Content = styled.div`
@@ -94,19 +97,20 @@ const App: React.FC = () => {
   }, [hueFilter, search])
 
   const Paginate = () => {
-    const numPages = Math.floor(colors.length / COLORS_PER_PAGE)
+    const numPages = Math.ceil(colors.length / COLORS_PER_PAGE)
 
     const Pages = styled.div`
       margin: 0 auto;
-      width: 50%;
+      padding: 0.5em 0;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
     `
 
     const PageNumber = styled.span<any>`
       font-weight: ${props => (props.underline ? 'bold' : 'normal')};
       text-decoration: ${props => (props.underline ? 'underline' : 'none')};
-      margin: 1em;
+      margin: 0 1em;
 
       :hover {
         cursor: pointer;
@@ -136,7 +140,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       <NavBar />
       <Main>
-        <Sidebar items={hues} />
+        <SidePanel items={hues} />
         <Content>
           {selectedColor ? (
             <ColorView color={selectedColor} />

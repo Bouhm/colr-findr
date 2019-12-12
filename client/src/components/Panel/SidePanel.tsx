@@ -5,28 +5,32 @@ import { Store } from '../Store'
 import Button from '../UI/Button'
 import Menu from './Menu'
 
-interface SidebarProps {
+interface SidePanelProps {
   items: string[]
 }
 
-const SidebarContainer = styled.div`
+const SidePanelContainer = styled.div`
   background-color: #d6d8d8;
   width: 16em;
   display: flex;
   flex-flow: column;
   padding: 2rem 1.5rem;
   box-shadow: 0 0 5px #a9a;
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `
 
-const Sidebar = (props: SidebarProps) => {
+const SidePanel = (props: SidePanelProps) => {
   const [state, dispatch] = useContext(Store)
 
   return (
-    <SidebarContainer>
+    <SidePanelContainer>
       <Button onClick={() => dispatch({ type: 'RANDOM_COLOR' })}>Random Color</Button>
       <Menu items={props.items} />
-    </SidebarContainer>
+    </SidePanelContainer>
   )
 }
 
-export default Sidebar
+export default SidePanel
