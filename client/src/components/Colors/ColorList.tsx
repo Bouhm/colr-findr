@@ -4,22 +4,29 @@ import styled from 'styled-components'
 import ColorCard, { IColor } from './ColorCard'
 
 interface ColorListProps {
-  cols: number
   colors: IColor[]
+  size?: string
   disabled?: boolean
 }
 
-const ColorList = (props: ColorListProps) => {
-  const ColorListContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(${props.cols}, 1fr);
-    grid-gap: 2rem;
-  `
+const ColorListContainer = styled.div<any>`
+  display: grid;
+  grid-template-columns: ${props => {
+    if (props.size === 'small') {
+      return 'repeat(auto-fit, minmax(200px, 1fr))'
+    } else {
+      return 'repeat(auto-fit, minmax(300px, 1fr))'
+    }
+  }};
+  grid-gap: 2rem;
+  padding: 2rem;
+`
 
+const ColorList = (props: ColorListProps) => {
   return (
-    <ColorListContainer>
+    <ColorListContainer size={props.size}>
       {props.colors.map(color => (
-        <ColorCard key={color.hex} color={color} disabled={props.disabled} />
+        <ColorCard key={color.hex} color={color} disabled={props.disabled} size={props.size} />
       ))}
     </ColorListContainer>
   )

@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import Search from './Search'
 
 const NavContainer = styled.div`
-  height: 5em;
+  background-color: black;
+  height: 3em;
 `
 
 const NavLeft = styled.div`

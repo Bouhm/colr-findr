@@ -10,6 +10,7 @@ interface SidebarProps {
 }
 
 const SidebarContainer = styled.div`
+  background-color: #d6d8d8;
   width: 15em;
 `
 

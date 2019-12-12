@@ -60,14 +60,21 @@ const ColorView = (props: ColorViewProps) => {
     flex-direction: column;
   `
 
+  const FullCardContainer = styled.div`
+    height: 100%;
+    padding: 2rem;
+  `
+
   const Centered = styled.div`
     margin: 0 auto;
   `
 
   return (
     <ColorViewContainer>
-      <ColorCard size="large" color={props.color} />
-      <ColorList cols={5} colors={shades} disabled={true} />
+      <FullCardContainer>
+        <ColorCard size="full" color={props.color} />
+      </FullCardContainer>
+      <ColorList size="small" colors={shades} disabled={true} />
       <Centered>
         <Button onClick={() => dispatch({ type: 'DESELECT_COLOR' })}>Clear</Button>
       </Centered>

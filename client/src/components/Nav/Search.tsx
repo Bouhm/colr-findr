@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 
+import Input from '../UI/Input'
 import useInput from '../Hooks/useInput'
 import { Store } from '../Store'
 
@@ -32,7 +33,7 @@ const Search = () => {
     debounce(dispatch({ type: 'SEARCH_COLOR', payload: e.currentTarget.value }), 200)
   }
 
-  return <input onChange={handleSearch} placeholder="Search" />
+  return <Input onChange={handleSearch} placeholder="Search" />
 }
 
 export default Search

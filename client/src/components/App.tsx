@@ -118,7 +118,7 @@ const App: React.FC = () => {
             <ColorView color={selectedColor} />
           ) : (
             <>
-              {<ColorList cols={4} colors={colors} />}
+              {<ColorList colors={colors} />}
               {Paginate()}
             </>
           )}
