@@ -72,7 +72,7 @@ const ColorView = (props: ColorViewProps) => {
   return (
     <ColorViewContainer>
       <FullCardContainer>
-        <ColorCard size="full" color={props.color} />
+        <ColorCard size="full" color={props.color} noShadow />
       </FullCardContainer>
       <ColorList size="small" colors={shades} disabled={true} />
       <Centered>

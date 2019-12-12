@@ -4,7 +4,7 @@ import Search from './Search'
 
 const NavContainer = styled.div`
   background-color: black;
-  height: 3em;
+  height: 4em;
 `
 
 const NavLeft = styled.div`

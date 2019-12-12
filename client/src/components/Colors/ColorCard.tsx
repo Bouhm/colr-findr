@@ -14,6 +14,7 @@ interface ColorProps {
   color: IColor
   size?: string
   disabled?: boolean
+  noShadow?: boolean
 }
 
 const Color = styled.div<IColor>`
@@ -26,7 +27,7 @@ const ColorDetails = styled.div`
 `
 
 const ColorCard = (props: ColorProps) => {
-  const { color, disabled, size } = props
+  const { color, disabled, noShadow, size } = props
   const [state, dispatch] = useContext(Store)
 
   const handleClick = () => {
@@ -37,7 +38,7 @@ const ColorCard = (props: ColorProps) => {
   }
 
   return (
-    <Card size={size} onClick={handleClick}>
+    <Card size={size} onClick={handleClick} noShadow={noShadow}>
       <Color {...color} />
       <ColorDetails>#{color.hex.toLowerCase()}</ColorDetails>
     </Card>

@@ -30,7 +30,7 @@ const AppContainer = styled.div`
 `
 const Main = styled.main`
   display: flex;
-  margin-top: 3em;
+  margin-top: 4em;
 
   position: absolute;
   top: 0;
