@@ -15,11 +15,17 @@ const NavLeft = styled.div`
 const NavRight = styled.div`
   float: right;
 `
+const Logo = styled.img`
+  vertical-align: middle;
+  height: 2.5em;
+`
 
 const NavBar = () => {
   return (
     <NavContainer>
-      <NavLeft />
+      <NavLeft>
+        <Logo src="./logo-symbol.svg" alt="logo " />
+      </NavLeft>
       <NavRight>
         <Search />
       </NavRight>
