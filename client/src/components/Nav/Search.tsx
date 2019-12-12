@@ -30,6 +30,11 @@ const Search = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleInputChange(e)
+
+    // Leave card detail view when searching
+    state.selectedColor && dispatch({ type: 'DESELECT_COLOR' })
+
+    // Debounce and set search filter
     debounce(dispatch({ type: 'SEARCH_COLOR', payload: e.currentTarget.value }), 200)
   }
 

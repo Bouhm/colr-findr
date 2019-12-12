@@ -18,10 +18,18 @@ const Menu = (props: MenuProps) => {
   const { items } = props
   const [state, dispatch] = useContext(Store)
 
+  const handleClick = (item: string) => {
+    // Leave card detail view when searching
+    state.selectedColor && dispatch({ type: 'DESELECT_COLOR' })
+
+    // Set hue filter
+    dispatch({ type: 'FILTER_COLOR', payload: item })
+  }
+
   return (
     <MenuContainer>
       {items.map(item => (
-        <MenuItem key={item} onClick={() => dispatch({ type: 'FILTER_COLOR', payload: item })}>
+        <MenuItem key={item} onClick={() => handleClick(item)}>
           {item}
         </MenuItem>
       ))}
