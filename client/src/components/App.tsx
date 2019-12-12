@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
+  body, input {
+    font-family: 'Source Serif Pro', serif;
+  }
+
   * {
     box-sizing: border-box;
   }

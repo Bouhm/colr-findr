@@ -15,6 +15,7 @@ const SidebarContainer = styled.div`
   display: flex;
   flex-flow: column;
   padding: 2rem 1.5rem;
+  box-shadow: 0 0 5px #a9a;
 `
 
 const Sidebar = (props: SidebarProps) => {

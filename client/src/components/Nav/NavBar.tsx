@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Search from './Search'
 
 const NavContainer = styled.div`
-  background-color: black;
+  background-color: #363c3c;
   line-height: 4em;
   padding: 0 1em;
   height: 4em;
