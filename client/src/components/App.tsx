@@ -6,11 +6,21 @@ import ColorView from './Colors/ColorView'
 import NavBar from './Nav/NavBar'
 import Sidebar from './Sidebar/Sidebar'
 import { Store } from './Store'
+import { IColor } from './Colors/ColorCard'
+import { cpus } from 'os'
+
+const URI = 'https://colorsapi.herokuapp.com/json'
+
+const GlobalStyle = createGlobalStyle`
+html, body {
+  margin: 0;
+  padding: 0;
+}
+`
 
 const AppContainer = styled.div`
   height: 100vh;
 `
-
 const Main = styled.main`
   height: 100%;
   display: flex;
@@ -21,19 +31,8 @@ const Content = styled.div`
 `
 
 const App: React.FC = () => {
-  const URI = 'https://colorsapi.herokuapp.com/json'
-  const hues = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Brown', 'Gray']
-
-  const GlobalStyle = createGlobalStyle`
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-`
-
-  const COLORS_PER_PAGE = 12
-  const [currPageNum, setCurrPageNum] = useState(1)
   const [state, dispatch] = useContext(Store)
+  const { data, hueFilter, search, selectedColor } = state
 
   useEffect(() => {
     fetch(URI, {
@@ -43,7 +42,10 @@ const App: React.FC = () => {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(data => dispatch({ type: 'SET_DATA', payload: data.colors }))
+      .then(data => {
+        dispatch({ type: 'SET_DATA', payload: data.colors })
+        setColors(data.colors)
+      })
   }, [])
 
   const Paginate = () => {
@@ -76,10 +78,34 @@ const App: React.FC = () => {
     )
   }
 
-  const { data, hueFilter, selectedColor } = state
-  const startIdx = (currPageNum - 1) * COLORS_PER_PAGE
-  const endIdx = startIdx + COLORS_PER_PAGE
-  const colors = hueFilter ? data.filter(color => color.hue === hueFilter.toLowerCase()) : data
+  const hues = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Brown', 'Gray']
+  const COLORS_PER_PAGE = 12
+  const [colors, setColors] = useState<IColor[]>([])
+  const [currPageNum, setCurrPageNum] = useState(1)
+
+  // Filter colors
+  useEffect(() => {
+    const startIdx = (currPageNum - 1) * COLORS_PER_PAGE
+    const endIdx = startIdx + COLORS_PER_PAGE
+    let filteredColors = data
+
+    // Filter by hue
+    if (hueFilter) {
+      filteredColors = hueFilter
+        ? data.filter(color => color.hue === hueFilter.toLowerCase())
+        : data
+    }
+
+    // Filter by search
+    if (search) {
+      // Trim #
+      const searchStr = search.toLowerCase().replace('#', '')
+
+      filteredColors = filteredColors.filter(color => color.hex.toLowerCase().startsWith(searchStr))
+    }
+
+    setColors(filteredColors.slice(startIdx, endIdx))
+  }, [hueFilter, search])
 
   return (
     <AppContainer>
@@ -92,7 +118,7 @@ const App: React.FC = () => {
             <ColorView color={selectedColor} />
           ) : (
             <>
-              {<ColorList cols={4} colors={colors.slice(startIdx, endIdx)} />}
+              {<ColorList cols={4} colors={colors} />}
               {Paginate()}
             </>
           )}
