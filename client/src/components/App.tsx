@@ -88,7 +88,10 @@ const App: React.FC = () => {
     }
 
     setColors(filteredColors)
-  }, [hueFilter, search, currPageNum])
+
+    // Reset page num whenever filter changes
+    setCurrPageNum(1)
+  }, [hueFilter, search])
 
   const Paginate = () => {
     const numPages = Math.floor(colors.length / COLORS_PER_PAGE)
