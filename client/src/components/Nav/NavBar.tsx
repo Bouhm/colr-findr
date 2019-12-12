@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import Search from './Search'
+import { Store } from '../Store'
 
 const NavContainer = styled.div`
   background-color: #363c3c;
@@ -18,13 +19,19 @@ const NavRight = styled.div`
 const Logo = styled.img`
   vertical-align: middle;
   height: 2.5em;
+
+  :hover {
+    cursor: pointer;
+  }
 `
 
 const NavBar = () => {
+  const [state, dispatch] = useContext(Store)
+
   return (
     <NavContainer>
       <NavLeft>
-        <Logo src="./logo-symbol.svg" alt="logo " />
+        <Logo onClick={() => dispatch({ type: 'RESET_ALL' })} src="./logo-symbol.svg" alt="logo " />
       </NavLeft>
       <NavRight>
         <Search />
