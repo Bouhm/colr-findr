@@ -5,7 +5,7 @@ export default styled.div`
   border-radius: 8px;
   height: 3em;
   line-height: 3em;
-  min-width: 8em;
+  min-width: 10em;
   text-align: center;
   background-color: white;
 `
