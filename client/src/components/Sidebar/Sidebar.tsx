@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 
+import { Store } from '../Store'
 import Button from '../UI/Button'
 import Menu from './Menu'
-import { Store } from '../Store'
 
 interface SidebarProps {
   items: string[]
@@ -12,6 +12,8 @@ interface SidebarProps {
 const SidebarContainer = styled.div`
   background-color: #d6d8d8;
   width: 15em;
+  display: flex;
+  flex-flow: column;
 `
 
 const Sidebar = (props: SidebarProps) => {

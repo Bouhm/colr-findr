@@ -22,7 +22,7 @@ const Color = styled.div<IColor>`
 `
 
 const ColorDetails = styled.div`
-  padding: 1em;
+  padding: 0.75em;
 `
 
 const ColorCard = (props: ColorProps) => {

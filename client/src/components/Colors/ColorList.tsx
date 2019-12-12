@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 
+import sizes from '../UI/CardSizes'
 import ColorCard, { IColor } from './ColorCard'
 
 interface ColorListProps {
@@ -11,24 +12,20 @@ interface ColorListProps {
 
 const ColorListContainer = styled.div<any>`
   overflow-y: auto;
+  max-height: calc(100% - 3em);
   display: grid;
-  grid-template-columns: ${props => {
-    if (props.size === 'small') {
-      return 'repeat(auto-fit, minmax(200px, 1fr))'
-    } else {
-      return 'repeat(auto-fit, minmax(275px, 1fr))'
-    }
-  }};
+  grid-template-columns: ${props => `repeat(auto-fit, minmax(${sizes[props.size].width}, 1fr))`};
   grid-template-rows: auto 1fr;
-  grid-gap: 2rem;
-  padding: 2rem;
+  padding: 1rem;
 `
 
 const ColorList = (props: ColorListProps) => {
+  const { size = 'medium' } = props
+
   return (
-    <ColorListContainer size={props.size}>
-      {props.colors.map(color => (
-        <ColorCard key={color.hex} color={color} disabled={props.disabled} size={props.size} />
+    <ColorListContainer size={size}>
+      {props.colors.map((color, i) => (
+        <ColorCard key={i} color={color} disabled={props.disabled} size={props.size} />
       ))}
     </ColorListContainer>
   )

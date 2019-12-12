@@ -17,15 +17,26 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+
+  * {
+    box-sizing: border-box;
+  }
 `
 
 const AppContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
   overflow: hidden;
 `
 const Main = styled.main`
-  height: 100%;
   display: flex;
+  margin-top: 3em;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 `
 
 const Content = styled.div`
