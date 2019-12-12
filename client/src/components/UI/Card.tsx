@@ -18,4 +18,10 @@ export default styled.div<CardProps>`
   overflow: hidden;
   margin: 1rem;
   cursor: ${props => (props.disabled || props.size === 'full' ? 'unset' : 'pointer')};
+  transition: all 0.1s ease-in-out;
+
+  :hover {
+    transform: ${props =>
+      props.disabled || props.size === 'full' ? 'none' : 'translate3d(0px, -5px, 0px)'};
+  }
 `

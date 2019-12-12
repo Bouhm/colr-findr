@@ -13,9 +13,10 @@ const MenuContainer = styled.div`
   margin: 1em 0;
 `
 
-const MenuItem = styled.div`
+const MenuItem = styled.div<any>`
   margin: 0.5em 0;
   cursor: pointer;
+  font-weight: ${props => (props.selected ? 'bold' : 'normal')};
 `
 
 const Menu = (props: MenuProps) => {
@@ -38,7 +39,7 @@ const Menu = (props: MenuProps) => {
   return (
     <MenuContainer>
       {items.map(item => (
-        <MenuItem key={item} onClick={() => handleClick(item)}>
+        <MenuItem key={item} selected={item === state.hueFilter} onClick={() => handleClick(item)}>
           {item}
         </MenuItem>
       ))}
