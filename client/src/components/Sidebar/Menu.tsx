@@ -26,8 +26,13 @@ const Menu = (props: MenuProps) => {
     // Leave card detail view when searching
     state.selectedColor && dispatch({ type: 'DESELECT_COLOR' })
 
-    // Set hue filter
-    dispatch({ type: 'FILTER_COLOR', payload: item })
+    // Toggle off hue filter if clicked again
+    if (state.hueFilter === item) {
+      dispatch({ type: 'RESET_FILTER', payload: item })
+    } else {
+      // Set hue filter
+      dispatch({ type: 'FILTER_COLOR', payload: item })
+    }
   }
 
   return (

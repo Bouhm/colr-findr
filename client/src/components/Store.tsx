@@ -23,6 +23,8 @@ export const reducer = (state: IState, action: IAction): IState => {
       return { ...state, search: action.payload }
     case 'FILTER_COLOR':
       return { ...state, hueFilter: action.payload }
+    case 'RESET_FILTER':
+      return { ...state, hueFilter: '' }
     default:
       return state
   }
