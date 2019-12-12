@@ -8,4 +8,5 @@ export default styled.div`
   min-width: 10em;
   text-align: center;
   background-color: white;
+  cursor: pointer;
 `

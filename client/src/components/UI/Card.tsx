@@ -4,6 +4,7 @@ import sizes from './CardSizes'
 
 interface CardProps {
   size?: string
+  disabled?: boolean
   noShadow?: boolean
 }
 
@@ -12,8 +13,9 @@ export default styled.div<CardProps>`
   flex-direction: column;
   height: ${props => (props.size ? sizes[props.size].height : sizes.medium.height)};
   border: ${props => (props.noShadow ? '1px solid black' : 'none')};
-  border-radius: 8px;
-  box-shadow: ${props => (props.noShadow ? 'none' : '0 0 5px #ccc')};
+  border-radius: 7px;
+  box-shadow: ${props => (props.noShadow ? 'none' : '0 0 5px #a9a')};
   overflow: hidden;
   margin: 1rem;
+  cursor: ${props => (props.disabled || props.size === 'full' ? 'unset' : 'pointer')};
 `

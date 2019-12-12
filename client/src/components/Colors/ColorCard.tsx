@@ -17,7 +17,7 @@ interface ColorProps {
   noShadow?: boolean
 }
 
-const Color = styled.div<IColor>`
+const Color = styled.div<any>`
   flex: 1;
   background-color: #${props => props.hex};
 `
@@ -38,7 +38,7 @@ const ColorCard = (props: ColorProps) => {
   }
 
   return (
-    <Card size={size} onClick={handleClick} noShadow={noShadow}>
+    <Card size={size} onClick={handleClick} disabled={disabled} noShadow={noShadow}>
       <Color {...color} />
       <ColorDetails>#{color.hex.toLowerCase()}</ColorDetails>
     </Card>

@@ -14,7 +14,8 @@ const MenuContainer = styled.div`
 `
 
 const MenuItem = styled.div`
-  padding: 0.5em 0;
+  margin: 0.5em 0;
+  cursor: pointer;
 `
 
 const Menu = (props: MenuProps) => {
