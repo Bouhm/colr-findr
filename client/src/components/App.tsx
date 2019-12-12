@@ -61,7 +61,7 @@ const App: React.FC = () => {
       .then(res => res.json())
       .then(data => {
         dispatch({ type: 'SET_DATA', payload: data.colors })
-        setColors(data.colors.slice(0, COLORS_PER_PAGE))
+        setColors(data.colors)
       })
   }, [])
 
@@ -70,8 +70,6 @@ const App: React.FC = () => {
 
   // Filter colors
   useEffect(() => {
-    const startIdx = (currPageNum - 1) * COLORS_PER_PAGE
-    const endIdx = startIdx + COLORS_PER_PAGE
     let filteredColors = data
 
     // Filter by hue
@@ -89,8 +87,8 @@ const App: React.FC = () => {
       filteredColors = filteredColors.filter(color => color.hex.toLowerCase().startsWith(searchStr))
     }
 
-    setColors(filteredColors.slice(startIdx, endIdx))
-  }, [hueFilter, search])
+    setColors(filteredColors)
+  }, [hueFilter, search, currPageNum])
 
   const Paginate = () => {
     const numPages = Math.floor(colors.length / COLORS_PER_PAGE)
@@ -99,12 +97,17 @@ const App: React.FC = () => {
       margin: 0 auto;
       width: 50%;
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
     `
 
     const PageNumber = styled.span<any>`
       font-weight: ${props => (props.underline ? 'bold' : 'normal')};
       text-decoration: ${props => (props.underline ? 'underline' : 'none')};
+      margin: 1em;
+
+      :hover {
+        cursor: pointer;
+      }
     `
 
     return (
@@ -122,6 +125,9 @@ const App: React.FC = () => {
     )
   }
 
+  const startIdx = (currPageNum - 1) * COLORS_PER_PAGE
+  const endIdx = startIdx + COLORS_PER_PAGE
+
   return (
     <AppContainer>
       <GlobalStyle />
@@ -133,7 +139,7 @@ const App: React.FC = () => {
             <ColorView color={selectedColor} />
           ) : (
             <>
-              {<ColorList colors={colors} />}
+              {<ColorList colors={colors.slice(startIdx, endIdx)} />}
               {Paginate()}
             </>
           )}
