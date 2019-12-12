@@ -10,14 +10,16 @@ interface ColorListProps {
 }
 
 const ColorListContainer = styled.div<any>`
+  overflow-y: auto;
   display: grid;
   grid-template-columns: ${props => {
     if (props.size === 'small') {
       return 'repeat(auto-fit, minmax(200px, 1fr))'
     } else {
-      return 'repeat(auto-fit, minmax(300px, 1fr))'
+      return 'repeat(auto-fit, minmax(275px, 1fr))'
     }
   }};
+  grid-template-rows: auto 1fr;
   grid-gap: 2rem;
   padding: 2rem;
 `

@@ -13,7 +13,7 @@ export default styled.div<CardProps>`
     } else if (props.size === 'small') {
       return '200px'
     } else {
-      return '300px'
+      return '275px'
     }
   }};
   border-radius: 8px;

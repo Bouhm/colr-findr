@@ -62,7 +62,7 @@ const ColorView = (props: ColorViewProps) => {
 
   const FullCardContainer = styled.div`
     height: 100%;
-    padding: 2rem;
+    padding: 2rem 2rem 0 2rem;
   `
 
   const Centered = styled.div`
