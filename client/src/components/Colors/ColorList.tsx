@@ -12,13 +12,13 @@ interface ColorListProps {
 
 const ColorListContainer = styled.div<any>`
   overflow-y: auto;
-  height: calc(100% - 3em);
+  max-height: calc(100% - 3em);
   display: grid;
   grid-template-columns: ${props =>
     `repeat(${props.size === 'small' ? 'auto-fit' : 'auto-fill'}, minmax(${
       sizes[props.size].width
     }, 1fr))`};
-  grid-template-rows: auto 1fr;
+  grid-template-rows: repeat(auto 1fr);
   padding: 1rem;
 
   @media (max-width: 500px) {

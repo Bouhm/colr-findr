@@ -4,8 +4,8 @@ const sizes: { [key: string]: { [key: string]: string } } = {
     height: '100%',
   },
   medium: {
-    width: '300px',
-    height: '200px',
+    width: '330px',
+    height: '250px',
   },
   small: {
     width: '200px',
