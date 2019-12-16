@@ -12,8 +12,6 @@ interface ColorListProps {
 
 const ColorListContainer = styled.div<any>`
   flex: 1;
-  overflow-y: auto;
-  max-height: calc(100% - 3em);
   display: grid;
   grid-template-columns: ${props =>
     `repeat(${props.size === 'small' ? 'auto-fit' : 'auto-fill'}, minmax(${

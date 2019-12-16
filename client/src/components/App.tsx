@@ -28,18 +28,17 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const AppContainer = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
+  overflow: hidden;
+
+  @media (max-width: 500px) {
+    overflow: auto;
+  }
 `
 const Main = styled.main`
   display: flex;
-  margin-top: 4em;
-
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  width: 100%;
 
   @media (max-width: 500px) {
     flex-wrap: wrap;
@@ -47,22 +46,15 @@ const Main = styled.main`
 `
 
 const Content = styled.div`
-  flex: 1;
+  flex: 1 16em;
   display: flex;
   flex-flow: column;
-  height: 100%;
-  position: relative;
-`
+  overflow-y: auto;
+  height: calc(100vh - 4em);
 
-const PageView = styled.div`
-  display: flex;
-  flex-flow: column;
-
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  @media (max-width: 500px) {
+    height: 100%;
+  }
 `
 
 const App: React.FC = () => {
@@ -160,10 +152,10 @@ const App: React.FC = () => {
           {selectedColor ? (
             <ColorView color={selectedColor} />
           ) : (
-            <PageView>
+            <>
               {<ColorList colors={colors.slice(startIdx, endIdx)} />}
               {Paginate()}
-            </PageView>
+            </>
           )}
         </Content>
       </Main>
