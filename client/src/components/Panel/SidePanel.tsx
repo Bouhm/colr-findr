@@ -11,6 +11,7 @@ interface SidePanelProps {
 
 const SidePanelContainer = styled.div`
   background-color: #d6d8d8;
+  font-size: 1.2em;
   width: 16em;
   display: flex;
   flex-flow: column;

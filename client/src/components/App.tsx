@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
 
   body, input {
     font-family: 'Source Serif Pro', serif;
+    font-size: 1.1em;
   }
 
   * {
@@ -50,7 +51,7 @@ const Content = styled.div`
   display: flex;
   flex-flow: column;
   overflow-y: auto;
-  height: calc(100vh - 4em);
+  height: calc(100vh - 4rem);
 
   @media (max-width: 500px) {
     height: 100%;
@@ -115,6 +116,7 @@ const App: React.FC = () => {
     `
 
     const PageNumber = styled.span<any>`
+      font-size: 1.2em;
       font-weight: ${props => (props.underline ? 'bold' : 'normal')};
       text-decoration: ${props => (props.underline ? 'underline' : 'none')};
       margin: 0 1em;
