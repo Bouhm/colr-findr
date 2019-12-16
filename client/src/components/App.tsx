@@ -48,6 +48,21 @@ const Main = styled.main`
 
 const Content = styled.div`
   flex: 1;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  position: relative;
+`
+
+const PageView = styled.div`
+  display: flex;
+  flex-flow: column;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 `
 
 const App: React.FC = () => {
@@ -145,10 +160,10 @@ const App: React.FC = () => {
           {selectedColor ? (
             <ColorView color={selectedColor} />
           ) : (
-            <>
+            <PageView>
               {<ColorList colors={colors.slice(startIdx, endIdx)} />}
               {Paginate()}
-            </>
+            </PageView>
           )}
         </Content>
       </Main>
