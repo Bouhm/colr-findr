@@ -109,7 +109,7 @@ const App: React.FC = () => {
 
     const Pages = styled.div`
       margin: 0 auto;
-      padding: 0.5em 0;
+      padding: 0.5rem 0;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -119,7 +119,7 @@ const App: React.FC = () => {
       font-size: 1.2em;
       font-weight: ${props => (props.underline ? 'bold' : 'normal')};
       text-decoration: ${props => (props.underline ? 'underline' : 'none')};
-      margin: 0 1em;
+      margin: 0 1rem;
 
       :hover {
         cursor: pointer;

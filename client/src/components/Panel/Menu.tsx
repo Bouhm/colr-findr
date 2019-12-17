@@ -10,7 +10,7 @@ interface MenuProps {
 const MenuContainer = styled.div`
   display: flex;
   flex-flow: column;
-  margin: 1em 0;
+  margin: 1rem 0;
 `
 
 const MenuItem = styled.div<any>`

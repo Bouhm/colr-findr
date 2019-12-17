@@ -5,9 +5,9 @@ import { Store } from '../Store'
 
 const NavContainer = styled.div`
   background-color: #363c3c;
-  line-height: 4em;
-  padding: 0 1em;
-  height: 4em;
+  line-height: 4rem;
+  padding: 0 1rem;
+  height: 4rem;
 `
 
 const NavLeft = styled.div`
