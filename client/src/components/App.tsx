@@ -30,7 +30,6 @@ const GlobalStyle = createGlobalStyle`
 
 const AppContainer = styled.div`
   height: 100vh;
-  position: relative;
   overflow: hidden;
 
   @media (max-width: 500px) {
@@ -47,7 +46,7 @@ const Main = styled.main`
 `
 
 const Content = styled.div`
-  flex: 1 16em;
+  flex: 1 20rem;
   display: flex;
   flex-flow: column;
   overflow-y: auto;
@@ -109,7 +108,7 @@ const App: React.FC = () => {
 
     const Pages = styled.div`
       margin: 0 auto;
-      padding: 0.5rem 0;
+      padding: 1rem 0;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;

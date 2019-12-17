@@ -11,11 +11,12 @@ interface SidePanelProps {
 
 const SidePanelContainer = styled.div`
   background-color: #d6d8d8;
+  border-right: 1px solid #adadad;
   font-size: 1.2em;
-  width: 16em;
+  width: 20rem;
   display: flex;
   flex-flow: column;
-  padding: 2rem 1.5rem;
+  padding: 2rem 2rem;
   box-shadow: 0 0 5px #a9a;
 
   @media (max-width: 500px) {

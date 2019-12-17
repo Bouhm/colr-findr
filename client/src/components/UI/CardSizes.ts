@@ -5,7 +5,7 @@ const sizes: { [key: string]: { [key: string]: string } } = {
   },
   medium: {
     width: '330px',
-    height: '250px',
+    height: '240px',
   },
   small: {
     width: '200px',

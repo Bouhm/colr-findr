@@ -20,10 +20,6 @@ const ColorListContainer = styled.div<any>`
     }, 1fr))`};
   grid-template-rows: auto 1fr;
   padding: 1rem 1rem 0 1rem;
-
-  @media (max-width: 500px) {
-    padding: 1rem 0;
-  }
 `
 
 const ColorList = (props: ColorListProps) => {

@@ -66,7 +66,7 @@ const ColorView = (props: ColorViewProps) => {
   `
 
   const Centered = styled.div`
-    margin: 0 auto 2rem auto;
+    margin: 1rem auto;
   `
 
   return (
