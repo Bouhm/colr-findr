@@ -8,7 +8,8 @@ import SidePanel from './Panel/SidePanel'
 import { Store } from './Store'
 import { IColor } from './Colors/ColorCard'
 
-const URI = 'https://colorsapi.herokuapp.com/json'
+const URI = 'http://colorsapi.herokuapp.com/json'
+const GRAPHQL_URI = 'http://colorsapi.herokuapp.com/graphql'
 const hues = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Brown', 'Gray']
 const COLORS_PER_PAGE = 12
 
@@ -62,16 +63,43 @@ const App: React.FC = () => {
   const { data, hueFilter, search, selectedColor } = state
 
   useEffect(() => {
-    fetch(URI, {
+    // REST API
+    // fetch(URI, {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   method: 'GET',
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     dispatch({ type: 'SET_DATA', payload: data.colors })
+    //     setColors(data.colors)
+    //   })
+
+    const graphqlQuery = {
+      query: `
+        {
+          colors {
+            hex
+            hue
+          }
+        }
+      `,
+    }
+
+    fetch(GRAPHQL_URI, {
       headers: {
         'Content-Type': 'application/json',
       },
-      method: 'GET',
+      method: 'POST',
+      body: JSON.stringify(graphqlQuery),
     })
-      .then(res => res.json())
-      .then(data => {
-        dispatch({ type: 'SET_DATA', payload: data.colors })
-        setColors(data.colors)
+      .then(res => {
+        return res.json()
+      })
+      .then(json => {
+        dispatch({ type: 'SET_DATA', payload: json.data.colors })
+        setColors(json.data.colors)
       })
   }, [])
 

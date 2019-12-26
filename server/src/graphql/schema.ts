@@ -6,12 +6,8 @@ const schema = buildSchema(`
     hue: String!
   }
 
-  type RootQuery {
-    colors: [Color]
-  }
-
-  schema {
-    query: RootQuery
+  type Query {
+    colors: [Color!]!
   }
 `)
 
