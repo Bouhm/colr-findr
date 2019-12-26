@@ -72,9 +72,9 @@ const ColorView = (props: ColorViewProps) => {
   return (
     <ColorViewContainer>
       <FullCardContainer>
-        <ColorCard size="full" color={props.color} noShadow />
+        <ColorCard size="full" color={props.color} noShadow={true} />
       </FullCardContainer>
-      <ColorList size="small" colors={shades} singleRow disabled />
+      <ColorList size="small" colors={shades} singleRow={true} disabled={true} />
       <Centered>
         <Button onClick={() => dispatch({ type: 'DESELECT_COLOR' })}>Clear</Button>
       </Centered>

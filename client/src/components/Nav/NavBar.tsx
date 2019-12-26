@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import Search from './Search'
 import { Store } from '../Store'
+import Search from './Search'
 
 const NavContainer = styled.div`
   background-color: #363c3c;

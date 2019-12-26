@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 
+import { IColor } from './Colors/ColorCard'
 import ColorList from './Colors/ColorList'
 import ColorView from './Colors/ColorView'
 import NavBar from './Nav/NavBar'
 import SidePanel from './Panel/SidePanel'
 import { Store } from './Store'
-import { IColor } from './Colors/ColorCard'
 
 const URI = 'http://colorsapi.herokuapp.com/json'
 const GRAPHQL_URI = 'http://colorsapi.herokuapp.com/graphql'
