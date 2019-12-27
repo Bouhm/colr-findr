@@ -136,7 +136,7 @@ const App: React.FC = () => {
 
     const Pages = styled.div`
       margin: 0 auto;
-      padding: 1rem 0;
+      padding: 0.5rem 0 1rem 0;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;

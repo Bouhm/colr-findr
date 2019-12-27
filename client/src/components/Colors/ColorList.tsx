@@ -18,7 +18,7 @@ const ColorListContainer = styled.div<any>`
     `repeat(${props.size === 'small' ? 'auto-fit' : 'auto-fill'}, minmax(${
       sizes[props.size].width
     }, 1fr))`};
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   padding: 1rem 1rem 0 1rem;
 `
 
